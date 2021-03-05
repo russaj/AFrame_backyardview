@@ -1,0 +1,120 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-enviropacks@latest/aframe-enviropacks.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+  </head>
+  <body>
+<a-scene shadow="type: pcfsoft" fog="type: linear">
+    <a-assets>
+      <a-asset-item id="lowpoly_tree" src="https://cdn.glitch.com/ffdd00df-fadf-440e-890f-c608a7387b89%2Flow-poly-tree.glb?v=1613094352780"></a-asset-item>
+      <img id="snow_mound" src="https://cdn.glitch.com/ffdd00df-fadf-440e-890f-c608a7387b89%2Fsnow_02_translucent_2k.jpg?v=1614200787824">
+        <audio id="beer" src="https://cdn.glitch.com/ffdd00df-fadf-440e-890f-c608a7387b89%2FBeer%20Can%20Opening-SoundBible.com-1428393126.mp3?v=1614345616906"></audio>
+        <audio id="bird" src="https://cdn.glitch.com/ffdd00df-fadf-440e-890f-c608a7387b89%2FSunny%20Day-SoundBible.com-2064222612.mp3?v=1614213317683"></audio>
+    </a-assets>
+  <a-entity camera id="camera" position="0 .1 -.5" rotate="0 0 0" look-controls wasd-controls>
+<a-camera>
+     <a-cursor color="white" fuse="true" animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1" animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1" animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1">
+     </a-cursor>
+   </a-camera>
+       </a-entity>
+  
+  <!-- Out of the box environment! -->
+  <a-entity environment="preset: forest; dressingAmount: 500; dressingColor: #fcfcfc"></a-entity>
+  <a-entity light="type: directional; color: blue; intensity: 0.3" position="-0.5 1 1"></a-entity>
+  <!--SUN and Light-->
+      <a-entity rotation="0 0 0" animation="property: rotation; to: 0 0 360; loop: true; dur: 5000">
+          <a-sphere position="-5 0 -10" src="https://cdn.glitch.com/ffdd00df-fadf-440e-890f-c608a7387b89%2Fsun.png?v=1614202105349">
+          <a-entity light="type: directional; castShadow: true; intensity: 0.4; shadowCameraVisible: false;" position="-1 2 0">
+          </a-entity>
+          </a-sphere>
+        </a-entity>
+    <a-entity light="type: spot; angle: 30; color:#FFE484; intensity:.4" position="-3 2 6" width="10" rotation="-45 0 0"></a-entity>
+    
+  <!--MOON and Light-->
+      <a-entity rotation="0 0 0" animation="property: rotation; to: 0 0 360; loop: true; dur: 5000">
+   <a-sphere position="5 0 -10" src="https://cdn.glitch.com/ffdd00df-fadf-440e-890f-c608a7387b89%2Fsnow_field_aerial_rough_2k.jpg?v=1614201126851">
+          <a-entity light="type: directional; color: black; intensity: 2" position="5 1 -1w0">
+          </a-entity>
+</a-sphere>
+</a-entity>
+<!--CHAIR: https://poly.google.com/view/9TN4PyhWvz1-->
+<a-gltf-model id="chair" position="-3 .5 .5" rotation="0 180 0" scale=".005 .005 .005" src="https://cdn.glitch.com/ffdd00df-fadf-440e-890f-c608a7387b89%2Fchair.glb?v=1614344800230">
+</a-gltf-model>
+<a-sphere sound="src: #beer; on:click" position="-3 -.45 .5"></a-sphere>
+      <a-text position="0 2 -2" value="russaj - Google Cardboard" color="black"></a-text>
+  <!--apartment: https://poly.google.com/view/cH1j7_BN9wx-->
+<a-gltf-model id="apartment" scale="2 3 2" position="-1.5 5.1 -4" rotation="0 -90 0" src="https://cdn.glitch.com/ffdd00df-fadf-440e-890f-c608a7387b89%2Fapartment.glb?v=1614191059165"></a-gltf-model>
+      <!--SHED: https://poly.google.com/view/0QTh_KUZRYE-->
+      <a-gltf-model id="barn" scale=".2 .4 .5" position="-7.5 .15 -6" rotation="0 90 0" src="https://cdn.glitch.com/ffdd00df-fadf-440e-890f-c608a7387b89%2Fbarn.glb?v=1613095993069" shadow="cast: true"></a-gltf-model>
+      <a-box position="-7.5 0.1 -6" rotation="0 0 0" color="#48260D" height="5.5" width="4"></a-box>
+      <a-box position="-7.5 2.8 -6" rotation="0 0 0" color="white" height=".1" width="4"></a-box>
+      <!--TREE: https://poly.google.com/view/2Qo-fmVKuSG-->
+<a-gltf-model id="tree" scale="2 2 2" position="6 1 -7"  rotation="0 100 0" src="#lowpoly_tree" shadow="cast: true"></a-gltf-model>
+    <a-circle id="ground" radius="10" rotation="-90 0 0" shadow="receive: true"></a-circle>
+   <!--left trees grove-->
+    <a-gltf-model class="tree" position="-4 1 -9"  rotation="0 100 0" scale="2 2 2" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="-7 1 -9"  rotation="0 100 0" scale="2 2 2" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="-9 1 -9"  rotation="0 100 0" scale="2 2 2" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="-9 1 -8"  rotation="0 100 0" scale="2 2 2" src="#lowpoly_tree"></a-gltf-model>
+    <a-gltf-model class="tree" position="-11 1 -8"  rotation="0 100 0" scale="2 2 2" src="#lowpoly_tree"></a-gltf-model>
+  <!--right side-->
+  <a-gltf-model class="tree" position="9 1 -4"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="9 1 -5"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="9 1 -6"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="9 1 -7"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="9 1 -3"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="9.5 1 -3.5"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+    <a-gltf-model class="tree" position="9.5 1 -4.5"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+    <a-gltf-model class="tree" position="9.5 1 -5.5"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+    <a-gltf-model class="tree" position="9.5 1 -6.5"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="10 1 -5"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="10 1 -4"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="10 1 -5"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="10 1 -6"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="10 1 -7"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+    <a-gltf-model class="tree" position="9 1 -2"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+<a-gltf-model class="tree" position="9 1 -1"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="9 1 -0"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="9 1 1"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="9 1 1"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="9.5 1 -2.5"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+    <a-gltf-model class="tree" position="9.5 1 -3.5"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+    <a-gltf-model class="tree" position="9.5 1 -2.5"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+    <a-gltf-model class="tree" position="9.5 1 -1.5"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="10 1 -3"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="10 1 -2"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+
+  <a-gltf-model class="tree" position="10 1 -1"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="10 1 0"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+  <a-gltf-model class="tree" position="10 1 1"  rotation="0 100 0" src="#lowpoly_tree"></a-gltf-model>
+      <!--back fence-->
+        <a-box position="4 0 -7" height="3" width="30" rotation="0 0 0" src="https://cdn.glitch.com/ffdd00df-fadf-440e-890f-c608a7387b89%2Fconcrete_rough_2k.jpg?v=1614202768915"></a-box>
+      <!--tall brick wall-->
+      <a-box position="-5 0 1" height="5" width="5" rotation="0 90 0" src="https://cdn.glitch.com/ffdd00df-fadf-440e-890f-c608a7387b89%2Fcastle_brick_07_diff_2k.jpg?v=1614199025643" color="#8a0303"></a-box>
+      <a-box position="-5 2.45 -1" height=".2" width="1" rotation="0 0 0" color="white"></a-box>
+  <!--Short Brick Wall-->
+      <a-box position="-5 0 -2" height="3" width="1" length="0" rotation="0 0 0" src="https://cdn.glitch.com/ffdd00df-fadf-440e-890f-c608a7387b89%2Fcastle_brick_07_diff_2k.jpg?v=1614199025643" color="#8a0303"></a-box>
+      <a-box position="-5 1.6 -2" height=".2" width="1" length="0" rotation="0 0 0" color="white"></a-box>
+      <!--FENCE: https://poly.google.com/view/cBoHb45Rbbl-->
+      <a-gltf-model id="fence" scale= ".3 .15 1" position="-.8 0.1 -1.4"  rotation="0 0 0" src="https://cdn.glitch.com/ffdd00df-fadf-440e-890f-c608a7387b89%2Ffence.glb?v=1613095437377"> </a-gltf-model>
+      <a-gltf-model id="fence2" scale= ".3 .15 1" position="4.3 0.1 0"  rotation="0 90 0" src="https://cdn.glitch.com/ffdd00df-fadf-440e-890f-c608a7387b89%2Ffence.glb?v=1613095437377"> </a-gltf-model>
+      <!--snow-->
+      <a-plane position="0 .2 -4" rotation="-90 0 0" width="40" height="20" src="https://cdn.glitch.com/ffdd00df-fadf-440e-890f-c608a7387b89%2Fsnow_02_rough_2k.jpg?v=1614200789494"></a-plane>
+  <!--Snow Mounds-->
+      <a-sphere position="2 -.5 -2" radius="1.25" src="snow_mound"
+      event-set__enter="_event:mouseenter; scale: 0 0 0"></a-sphere>
+  
+      <a-sphere position="0 -.5 -2" radius="1.25" src="snow_mound">
+        <a-entity sound="src: #bird; autoplay:true" position="2 -.5 -2"></a-entity>
+      </a-sphere>
+      <a-sphere position="-2 -.5 -2" radius="1.25" src="snow_mound"></a-sphere>
+      <a-sphere position="-3 -.5 -2" radius="1.25" src="snow_mound"></a-sphere>
+      <!--patio-->
+  <a-plane position="-1 .2 -.9" rotation="-90 0 0" width="8" height="4" src="https://cdn.glitch.com/ffdd00df-fadf-440e-890f-c608a7387b89%2Fbrown_planks_09_ao_2k.jpg?v=1614203679826"></a-plane>
+      <a-sky color="#ECECEC"></a-sky>
+      
+    </a-scene>
+  </body>
+</html>
